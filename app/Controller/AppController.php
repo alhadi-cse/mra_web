@@ -5,9 +5,6 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('HttpSocket', 'Network/Http');
 App::uses('PHPExcel', 'Lib/PHPExcelClasses');
 
-//App::uses('PHPExcel', 'Lib/PHPExcelLibrary');
-//App::uses('Vendor', 'PHPExcelClasses/PHPExcel');
-//App::uses('PHPExcel', 'Vendor/PHPExcelClasses/PHPExcel');
 
 class AppController extends Controller {
 
