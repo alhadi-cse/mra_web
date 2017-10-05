@@ -14,16 +14,5 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8',
 	);
 
-	///===For Server===///
-//	public $default = array(
-//		'datasource' => 'Database/Mysql',
-//		'persistent' => false,
-//		'host' => 'localhost',
-//		'login' => 'root',
-//		'password' => 'sunbath',
-//		'database' => 'mra_web_db',
-//		'prefix' => '',
-//		'encoding' => 'utf8',
-//	);
 
 }
