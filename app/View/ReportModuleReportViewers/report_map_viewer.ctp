@@ -1,6 +1,4 @@
-
-<!--//RMO-->
-
+<!--RMO file add-->
 <div id='map_info' class="map_info">
     <style>
         body {
