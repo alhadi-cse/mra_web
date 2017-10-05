@@ -1,0 +1,88 @@
+
+.fht-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font: normal 12px/1.3 Verdana, Helvetica, Arial, sans-serif;
+}
+.fht-table div.input, .fht-table div.select {
+    text-align: center;
+}
+.fht-table input, .fht-table select {
+    width: 150px;
+    margin: 0;
+    padding: 3px 5px;
+}
+.fht-table textarea {
+    width: 150px;
+    height: 30px;
+    margin: 0;
+    padding: 4px 5px;
+}
+.fht-table,
+.fht-table thead,
+.fht-table tfoot,
+.fht-table tbody,
+.fht-table tr,
+.fht-table th,
+.fht-table td {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    font: inherit;
+}
+.fht-table th,
+.fht-table td {
+    margin: 0;
+    padding: 5px;
+    font-size: 100%;
+    font: inherit;
+}
+.fht-table th {
+    font-weight: bold;
+}
+.fht-table-wrapper,
+.fht-table-wrapper .fht-thead,
+.fht-table-wrapper .fht-tfoot,
+.fht-table-wrapper .fht-fixed-column .fht-tbody,
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+    overflow: hidden;
+    position: relative;
+}
+/*
+.fht-table-wrapper .fht-thead,
+.fht-table-wrapper .fht-tfoot {
+    background: #dedede;
+}
+.fht-table-wrapper .fht-tbody thead,
+.fht-table-wrapper .fht-tbody tfoot {
+    display: none;
+    background: none;
+}*/
+.fht-table-wrapper .fht-thead th,
+.fht-table-wrapper .fht-thead td,
+.fht-table-wrapper .fht-tfoot th,
+.fht-table-wrapper .fht-tfoot td {    
+    line-height: 1.5;
+    padding: 5px;
+}
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+    max-height: 350px;
+    overflow: auto;
+}
+.fht-table-wrapper .fht-tbody {
+}
+.fht-table-wrapper .fht-table .fht-cell {
+    overflow: hidden;
+    height: 1px;
+}
+.fht-table-wrapper .fht-fixed-column,
+.fht-table-wrapper .fht-fixed-body {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+.fht-table-wrapper .fht-fixed-column {
+    z-index: 1;
+}

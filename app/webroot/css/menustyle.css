@@ -1,0 +1,237 @@
+
+#accordian {
+    width: auto;
+    min-width: 235px;
+    /*min-width: 250px;*/
+    min-height: 275px;
+    margin: 0 auto;
+    padding: 0;
+    color: #fafafe;
+}
+
+#accordian h3 {
+    margin: 3px auto;
+    padding: 0;
+    vertical-align: middle;
+
+}
+
+#accordian h3 a {
+    display: block;
+    margin: 0;
+    padding: 5px 3px 6px 8px;
+/*    font: bold 9.5pt/1.7 Tahoma,'Myriad Pro',Verdana, 'Lucida Grande', Helvetica;*/
+    font: 700 9.75pt/1.7 Roboto,Tahoma,"Myriad Pro",Verdana,"Lucida Grande",Helvetica;
+    color: #f5f5f7;
+    text-decoration: none;
+
+    background: #008bb7;
+    background: -moz-linear-gradient(top, #008bb7, #009ccf);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(#008bb7), color-stop(#009ccf));
+    background: -webkit-linear-gradient(top, #008bb7,#009ccf);
+    background: -o-linear-gradient(top, #008bb7,#009ccf);
+    background: -ms-linear-gradient(top, #008bb7,#009ccf);
+    background: linear-gradient(to bottom, #008bb7,#009ccf);
+
+/*    -webkit-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.23);
+    -moz-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.23);
+    -ms-text-shadow: 0 1px 0 rgba(0, 0, 0, 0.23);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.23);*/
+
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+}
+
+#accordian h3 a:hover {
+    color: #ffffff;
+
+    background: #00b7ea;
+    background: -moz-linear-gradient(top, #00b7ea, #009ec3);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(#00b7ea), color-stop(#009ec3));
+    background: -webkit-linear-gradient(top, #00b7ea,#009ec3);
+    background: -o-linear-gradient(top, #00b7ea,#009ec3);
+    background: -ms-linear-gradient(top, #00b7ea,#009ec3);
+    background: linear-gradient(to bottom, #00b7ea,#009ec3);
+    
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+}
+
+#accordian h3 div.updown_arrow {
+    float: right;
+    position: relative;
+    top: 1px;
+    right: 2px;
+    border: 1px solid rgba(200, 230, 245, 0.85);
+    width: 17px;
+    height: 17px;
+    background: #2ad url('../img/arrows.png') no-repeat scroll 2px 3px / 13px auto;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+}
+#accordian h3 div.updown_arrow:hover,
+#accordian h3:hover div.updown_arrow {
+    box-shadow: 0 0 8px #3df;
+    
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+}
+
+#accordian li.active > h3 a {
+    color: #ffffff;
+
+    background: #45c3f5;
+    background: -moz-linear-gradient(top, #45c3f5, #28afe3);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(#45c3f5), color-stop(#28afe3));
+    background: -webkit-linear-gradient(top, #45c3f5, #28afe3);
+    background: -o-linear-gradient(top, #45c3f5, #28afe3);
+    background: -ms-linear-gradient(top, #45c3f5, #28afe3);
+    background: linear-gradient(to bottom,  #45c3f5, #28afe3);
+}
+#accordian li.active > h3 div.updown_arrow {
+    background-position: 2px -39px;
+    background-color: rgba(23, 213, 230, 0.7);
+    box-shadow: 0 0 8px #7de;
+}
+
+#accordian li {
+    list-style-type: none;
+
+    -webkit-box-shadow: inset 0 -1px 7px 0 rgba(0, 23, 45, 0.05);
+    -moz-box-shadow: inset 0 -1px 7px 0 rgba(0, 23, 45, 0.05);
+    box-shadow: inset 0 -1px 7px 0 rgba(0, 23, 45, 0.05);
+}
+
+#accordian li.active>ul {   
+    border: 1px dotted rgba(0, 0, 0, 0.23);
+    border-top: 0 none;
+}
+
+#accordian li.active>ul {
+    display: block;	
+}
+
+#accordian ul ul {
+    background-color: #f5faf8;
+    display: none;
+}
+
+#accordian ul ul li a:hover {
+    border-left: 3px solid #1a87bd;
+    color: #053470;
+    background: rgba(13, 140, 243, 0.13);
+
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+}
+
+#accordian ul ul li.active> a {
+    border-left: 3px solid #0587af;
+    color: #134378;
+    background: rgba(23, 130, 230, 0.07);
+}
+
+#accordian ul ul li a {
+    position: relative;
+    display: block;
+    border-top: 1px dotted rgba(0, 0, 0, 0.23);
+    padding: 5px 12px 5px 7px;
+
+    color: #0573af;
+    /*font: 9.5pt/1.45 Tahoma,'Myriad Pro',Arial, 'Lucida Grande', Helvetica;*/
+    font: 500 9.75pt/1.45 Roboto,Tahoma,"Myriad Pro",Verdana,"Lucida Grande",Helvetica;
+    text-decoration: none;
+
+/*    -webkit-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+    -moz-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);*/
+
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+
+    /*    -webkit-transition: border-left 0.13s;
+        -moz-transition: border-left 0.13s;    
+        transition: border-left 0.13s;
+        
+        transition: all 0.2s ease-out 0s;*/
+}
+
+#accordian ul ul ul {
+    display: none;
+    margin-left: 10px;
+    border-left: 1px dotted rgba(0, 0, 0, 0.45);
+    border-right: 1px solid rgba(0, 0, 0, 0.13);
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    max-height: 230px;
+    max-height: 30vh;
+    background-color: #fcfffe;
+    overflow-y: auto;
+}
+
+#accordian ul ul ul li {
+    list-style-type: none;
+
+    -webkit-box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 0.05);
+    -moz-box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 -1px 3px 0 rgba(255, 255, 255, 0.05);
+}
+
+#accordian ul ul ul li a {
+    padding: 5px;
+    color: #134578;
+    /*font: 9.5pt/1.4 Tahoma,'Myriad Pro',Arial, 'Lucida Grande', Helvetica;*/
+    font: 400 9.75pt/1.35 Roboto,Tahoma,"Myriad Pro",Verdana,"Lucida Grande",Helvetica;
+}
+
+#accordian ul ul ul li.active> a {
+    border-left: 3px solid #13affa;
+    color: #134378;
+    background: rgba(23, 175, 245, 0.13);
+}
+
+
+#accordian a:not(:only-child):after {
+    content: "";
+    float: right;
+    position: relative;
+    right: -7px;
+    top: 0;
+
+    border: 1px solid rgba(235, 245, 240, 0.23);
+    height: 14px;
+    width: 14px;
+    background: #058af5 url('../img/arrows.png') no-repeat scroll 1px 2px / 12px auto;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    -webkit-transition: all 0.23s ease-out 0s;
+    -moz-transition: all 0.23s ease-out 0s;
+    transition: all 0.23s ease-out 0s;
+
+    /*    -webkit-transition: all 0.23s ease-in-out;
+        -moz-transition: all 0.23s ease-in-out;
+        transition: all 0.23s ease-in-out;*/
+}
+
+#accordian .active>a:not(:only-child):after {
+    background-position: 1px -37px;
+    border: 1px solid #13affa;
+    box-shadow: 0 0 7px #24f5fa;
+}

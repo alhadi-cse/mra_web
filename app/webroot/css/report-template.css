@@ -1,0 +1,125 @@
+
+body {
+    background: #fff;
+    color: #071315;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+.report-container {
+    border: 0 none;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 8px;
+    overflow: visible;
+}
+
+.report-container > .not_for_print, .report-container .not_for_print {
+    display: none;
+}
+
+.tbl-report {
+    clear: both;
+    width: auto;
+    height: auto;
+    margin: 7px auto;
+    padding: 0;
+    min-width: 50%;
+    max-width: 100%;
+    color: #071315;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    border-collapse: collapse;
+    overflow: visible;
+}
+
+.tbl-report th {
+    border: 1px solid #000;
+    min-width: 50px;
+    line-height: 1.2;
+    padding: 6px;
+    font-size: 9.0pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tbl-report th.sub-title {
+    border: 1px solid #000;
+    padding: 4px;
+    color: #133745;
+    font-size: 7.5pt;
+    font-style: italic;
+    text-align: center;
+}
+
+.tbl-report th.empty {
+    padding: 0 !important;
+}
+
+.tbl-report td {
+    border: 1px solid #000;
+    padding: 4px;
+    color: #000;
+    font-size: 8.75pt;
+}
+
+.tbl-report tr.alt td {
+    color: #132427;
+    background-color: #eaf2d3;
+}
+
+.tbl-report td a, .tbl-report th a {
+    padding: 4px;
+    color: #000;
+    text-decoration: none;
+}
+
+/*
+.tbl-report {
+    width: 100%;
+    height: auto;
+    color: #072328;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    border-collapse: collapse;
+    overflow: auto;
+}
+
+.tbl-report th {
+    border: 1px solid #000;
+    min-width: 50px;
+    line-height: 1.15;
+    padding: 7px 3px;
+    font-size: 9.0pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.tbl-report th.sub-title {
+    border: 1px solid #000;
+    padding: 5px;
+    color: #234578;
+    font-size: 7.5pt;
+    font-style: italic;
+    text-align: center;
+}
+
+.tbl-report th.empty {
+    padding: 0 !important;
+}
+
+.tbl-report td {
+    border: 1px solid #000;
+    padding: 3px 5px;
+    font-size: 8.75pt;
+}
+
+.tbl-report tr.alt td {
+    color: #132427;
+    background-color: #eaf2d3;
+}
+
+.tbl-report td a, .tbl-report th a {
+    padding: 3px 2px;
+    color: #000;
+    text-decoration: none;
+}
+*/

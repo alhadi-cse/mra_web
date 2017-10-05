@@ -1,0 +1,84 @@
+<?php                
+    if(isset($msg) && !empty($msg)) {
+        if(is_array($msg)) {
+            echo $this->Html->scriptBlock('msg.init('.json_encode($msg).');', array('inline'=>true));
+        }
+        else {
+            echo $this->Html->scriptBlock("msg.init('error', 'Error...', '$msg');", array('inline'=>true));
+        }
+    }
+    else {
+        if(!empty($allDetails['LicenseModuleInitialAssessmentVerification'])){
+            $status = '';
+            if($allDetails['LicenseModuleInitialAssessmentVerification'][0]['verification_status_id']=='0'){
+                $status = 'Not Verified';  
+            }
+            else if($allDetails['LicenseModuleInitialAssessmentVerification'][0]['verification_status_id']=='1'){
+                $status = 'Verified';  
+            } 
+            $verification_date = $allDetails['LicenseModuleInitialAssessmentVerification'][0]['verification_date'];
+            $comments = $allDetails['LicenseModuleInitialAssessmentVerification'][0]['comments'];            
+        }
+        else{
+           $status = 'Pending';
+           $verification_date = '';
+           $comments = '';
+        }    
+?>
+
+<div id="basicInfo" title="Verification Detail" style="margin:0px; padding:10px; background-color:#fafdff;"> 
+    <fieldset>        
+        <div class="datagrid" style="max-height:430px; overflow-y:auto; color:#232428;">
+            <table cellpadding="7" cellspacing="8" border="0">              
+                <tr>
+                    <td style="width:25%;">Short Name of Organization</td>
+                    <td class="colons">:</td>
+                    <td><?php echo $allDetails['BasicModuleBasicInformation']['short_name_of_org']; ?></td>
+                </tr>
+                <tr>
+                    <td>Full Name of Organization</td>
+                    <td class="colons">:</td>
+                    <td><?php echo $allDetails['BasicModuleBasicInformation']['full_name_of_org']; ?></td>
+                </tr>
+                <tr>
+                    <td>License No</td>
+                    <td class="colons">:</td>
+                    <td><?php echo $allDetails['BasicModuleBasicInformation']['license_no']; ?></td>
+                </tr>
+                <tr>
+                    <td>License Issue Date</td>
+                    <td class="colons">:</td>
+                    <td><?php echo $allDetails['BasicModuleBasicInformation']['license_issue_date']; ?></td>
+                </tr>
+                <tr>
+                    <td>Cancel Request Date</td>
+                    <td class="colons">:</td>
+                    <td><?php echo $allDetails['LicenseModuleCancelRequest']['cancel_request_date']; ?></td>
+                </tr>
+                <tr>
+                    <td>Cancel Request Reason</td>
+                    <td class="colons">:</td>
+                    <td><?php echo $allDetails['LicenseModuleCancelRequest']['cancel_reasons']; ?></td>
+                </tr>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<script>
+    $(function () {
+        $("#basicInfo").dialog({
+            modal: true, width: 'auto', height: 'auto', 
+            buttons: {
+                Close: function () {
+                    $(this).dialog("close");
+                }
+            },
+            create: function(evt, ui) {
+                $(this).css("minWidth", "850px").css("maxWidth", "1000px");
+            }
+        });
+    });
+</script>
+
+<?php } ?>
