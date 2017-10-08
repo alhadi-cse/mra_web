@@ -1,4 +1,4 @@
-<!--RMO file add-->
+
 <div id='map_info' class="map_info">
     <style>
         body {
@@ -45,7 +45,7 @@
         .gm-style-iw h4, .gm-style-iw h5 {
             font-size: 13px;
         }
-        
+
         /*
         #mapLabelPanel {
             display: none;
@@ -90,7 +90,7 @@
         }
         .map_label {
             z-index: 105;
-            display: inline-block;
+            display: none;
             color: #333;
             font: normal 13px/1.3 Roboto, Helvetica, Arial, sans-serif;
             vertical-align: middle;
@@ -119,7 +119,7 @@
             font: bold 14px/1.2 Roboto, Arial, sans-serif;
             text-align: left;
         }
-        
+
 
         .map_btns_content {            
             z-index: 101;
@@ -439,7 +439,7 @@
 
     <!--    onclick="javascript: legend_open_close('legend_info', 'close', 'left');" 
         onclick="javascript: legend_open_close('legend', 'close', 'right');"-->
-   
+
 
     <div class="map_btns_content">
         <div id="map_center" class="map_btns map_full_extent" title="Full extent the map"></div>
@@ -510,7 +510,7 @@
                                             <option value="number_of_male_savers">Male Saver</option>
                                             <option value="number_of_female_savers">Female Saver</option>
                                             <option value="number_of_male_savers + number_of_female_savers">Total Saver</option>
-<!--                                            loan_disbursement-->
+                                            <!--                                            loan_disbursement-->
                                         </select>    
 
 
@@ -520,9 +520,8 @@
                                             <option value="2">Area/Regional/Zonal Office</option>    
                                             <option value="3">Branch Office</option>  
                                         </select>
-                                        <?php
-                                        echo $this->Form->input('', array('id' => 'period', 'type' => 'select', 'class' => 'period_opt', 'style' => 'width:170px; height:25px; margin-left:5px;display:none', 'options' => $period_list, 'escape' => false, 'div' => false, 'label' => false))
-                                        ?>
+                                        
+                                        <?php echo $this->Form->input('', array('id' => 'period', 'type' => 'select', 'class' => 'period_opt', 'style' => 'width:170px; height:25px; margin-left:5px;display:none', 'options' => $period_list, 'escape' => false, 'div' => false, 'label' => false)) ?>
 <!--                                        <select id="loan_category_info" style="width:150px; height:25px; margin-left:5px;display:none">
                                             <option value="">--- Select Category ---</option>
                                             <option value="loan_category_id">Loan Category</option>
@@ -578,7 +577,7 @@
     <script>
 
         $(function () {
-            draggable_modal('option_title', 'option_opt', 'option_opt_bg');
+            draggable_modal('option_title', 'option_opt', 'option_opt_bg', false);
         });
 
         var isOpen = false;
@@ -692,9 +691,9 @@
 
         function set_branch_data() {
             map_selected_info();
-            
+
             map_label_show_hide($("#map_label_opt").prop('checked'));
-            
+
             var admin_code = $("#bd_info").val();
 
             var branch_type_id = $("#branch_type").val();
@@ -896,14 +895,14 @@
                 }
                 return false;
             });
-            
+
             //$("#map_label_opt").change(map_label_show_hide((this).checked));
             $("#map_label_opt").change(function () {
                 map_label_show_hide((this).checked);
             });
-            
+
             return true;
-        }        
+        }
         function map_label_show_hide(isShow) {
             var dist_code = $("#bd_info_district").val();
             var upaz_code = $("#bd_info_upazila").val();
@@ -1140,7 +1139,7 @@
                             curr_poly = this;
                             this.setOptions(polySelectedOptions);
 
-                            if ($('#branch_info option:selected').text() == "Branch" || $('#branch_info option:selected').text() == "Saving" ) {
+                            if ($('#branch_info option:selected').text() == "Branch" || $('#branch_info option:selected').text() == "Saving") {
                                 infoWindow.setContent('<div style="width:auto; min-width:130px; min-height:45px; text-align:center;">' +
                                         '<h2 class="info-title">' + data_info.data_admin_name + ' ' + data_info.admin_name + '</h2>' +
                                         '<h3 style="color:#058;"> Count : ' + data_info.data_value + '</h3></div>');
@@ -1189,14 +1188,14 @@
                     labelOptions.content = curr_admin_name + ('<p style="text-align:center; font-weight:bold; color:#024;">(' + data_value + ')</p>');
                     labelOptions.pixelOffset = new google.maps.Size(-offsetLeft, -10);
                     labelOptions.position = poly_center;
-                                        
+
                     labelClass = "map_label";
                     if (admin_props.dist_code)
                         labelClass += " dist_" + admin_props.dist_code;
                     if (admin_props.upaz_code)
                         labelClass += " upaz_" + admin_props.upaz_code;
 
-                    labelOptions.boxClass = labelClass; 
+                    labelOptions.boxClass = labelClass;
 
                     var polygonLabel = new InfoBox(labelOptions);
                     polygonLabel.open(map);
@@ -1272,17 +1271,17 @@
         }
         $("#bd_info").on("change", function () {
             $("#bd_info_upazila").hide();
-            
+
             $("#bd_info_district").empty();
             $("#bd_info_district").append('<option value="">--- select ---</option>');
             $("#bd_info_upazila").empty();
             $("#bd_info_upazila").append('<option value="">--- select ---</option>');
-            
+
             for (var t = 0; t < bd_all["dist"].features.length; t++) {
                 $("#bd_info_district").append('<option value="' + bd_all["dist"].features[t].properties.dist_code + '">' + bd_all["dist"].features[t].properties.dist_name + '</option>');
             }
-            
-            if($(this).val() == 'upaz') {
+
+            if ($(this).val() == 'upaz') {
                 $("#map_label_opt").prop('checked', false);
                 map_label_show_hide(false);
             }
@@ -1308,9 +1307,9 @@
             }
             set_map_filter();
             map_selected_info();
-            
+
             map_label_show_hide($("#map_label_opt").prop('checked'));
-            
+
             //alert("OK");
             //  $("input[name='bd_info']:checked").val();
             //set_district_map(dstCode);
@@ -1333,7 +1332,7 @@
 
             var dstCode = $("#bd_info_district").val();
             set_district_map(dstCode);
-            
+
             map_label_show_hide($("#map_label_opt").prop('checked'));
         }
 
