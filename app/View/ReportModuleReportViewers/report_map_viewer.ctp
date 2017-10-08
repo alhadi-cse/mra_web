@@ -1,4 +1,5 @@
 
+
 <div id='map_info' class="map_info">
     <style>
         body {
@@ -415,6 +416,7 @@
         <div id="map_legend_infos" class="map_legend_infos"></div>        
     </div>
 
+    
     <div id="legend_btn" class="legend_btn_content legend_btn_left" onclick="javascript: legend_open_close('legend', 'open', 'right');" title="Show Map Legend">
         <div class="legend_btn_left_img"></div><!--<span class="map_legend_btn" onclick="javascript: legend_open_close('legend', 'open', 'right');" title="Show Map Legend">&#9776;</span>--> 
     </div>
