@@ -1,4 +1,6 @@
+
 <div id='map_info' class="map_info">
+
     <style>
 
         body {
@@ -45,10 +47,11 @@
         .gm-style-iw h4, .gm-style-iw h5 {
             font-size: 13px;
         }
-        #mapLabelPanel {
-            display: none;
-        }
-
+        /*        
+                #mapLabelPanel {
+                    display: none;
+                }
+        */
         .map_info, .map_content {
             z-index: 99;
             position: fixed;
@@ -88,7 +91,7 @@
         }
         .map_label {
             z-index: 105;
-            display: inline-block;
+            display: none;
             color: #333;
             font: normal 13px/1.3 Roboto, Helvetica, Arial, sans-serif;
             vertical-align: middle;
@@ -130,7 +133,7 @@
             -ms-user-select: none;
             user-select: none;
         }
-        
+
         .map_btns {
             display: inline-block;            
             border: 2px solid rgba(255, 255, 255, 0.01);
@@ -443,10 +446,12 @@
         onclick="javascript: legend_open_close('legend', 'close', 'right');"-->
 
     <div class="map_opt_content" style="left:10%;">
-        <label><input type="checkbox" id="legend_info_opt" checked="checked" title="Show/Hide Map Information" />Map Information</label>
+        <label><input type="checkbox" id="legend_info_opt" checked="checked" title="Show/Hide Map Information" disabled/>Map Information</label>
         <label><input type="checkbox" id="legend_opt" checked="checked" title="Show/Hide Map Legend" />Map Legend</label>
-        <label><input type="checkbox" id="map_label_opt" title="Show/Hide Map Label" />Map Label</label>
+        <label disabled="true"><input type="checkbox" id="map_label_opt" title="Show/Hide Map Label" disabled />Map Label</label>
     </div>
+
+
     <div class="map_opt_content" style="right:25%;">        
         <div id="branch_count" class="branch_count"></div>
         <div id="selected_info"></div>        
@@ -523,13 +528,13 @@
     <script>
 
         $(function () {
-            draggable_modal('option_title', 'option_opt', 'option_opt_bg');
+            draggable_modal('option_title', 'option_opt', 'option_opt_bg', false);
         });
 
         var isOpen = false;
 
         function option_modal_open(content) {
-            if (!isOpen)
+            if (!isOpen || $('#' + content + '_bg').css('display') == 'none')
                 modal_open(content, 50);
             isOpen = true;
         }
@@ -575,7 +580,24 @@
             set_admin_boundary();
 
             $("input[name='bd_info']").on("change", function () {
+
+
+
+
+                //$("#map_label_opt").attr('checked',false);
+
+//                 else{
+//                     $("#map_label_opt").attr('checked',false);
+//                 }
+//                
+                //"#map_label_opt").prop('checked')
+
+
+
                 set_admin_boundary();
+                $('#map_label_opt').attr('disabled', false);  //RMO
+                $('#legend_info_opt').attr('disabled', false);
+                map_label_show_hide(false);
                 return false;
             });
             $("#org_list").on("change", function () {
@@ -617,14 +639,7 @@
                 }
                 return false;
             });
-            $("#map_label_opt").change(function () {
-                if ((this).checked) {
-                    $("#mapLabelPanel").fadeIn(500);
-                } else {
-                    $("#mapLabelPanel").fadeOut(500);
-                }
-                return false;
-            });
+
             if (typeof (google) == 'undefined') {
                 legend_open_close('legend', 'close', 'right');
                 $("#legend").css('right', '-1000px');
@@ -650,35 +665,73 @@
                 $("#map_cord_info").html(evt.latLng.lat().toFixed(6) + ", " + evt.latLng.lng().toFixed(6));
             });
             google.maps.event.addListenerOnce(map, "idle", function () {
-                $("#mapLabelPanel").css('display', $("#map_label_opt").prop('checked') ? 'block' : 'none');
+                $(".map_label").css('display', $("#map_label_opt").prop('checked') ? 'block' : 'none');
+            });
+
+            $("#map_label_opt").change(function () {   //RMO
+                map_label_show_hide((this).checked);
             });
             return true;
         }
 
+        function map_label_show_hide(isShow) {
+            var dist_code = $("#bd_info_district").val();
+            var upaz_code = $("#bd_info_upazila").val();
+
+            var selected_admin = '';
+            if (dist_code)
+                selected_admin = '.dist_' + dist_code;
+
+            if (upaz_code)
+                selected_admin += '.upaz_' + upaz_code;
+
+            if (selected_admin != '') {
+                $(".map_label:not(" + selected_admin + ")").fadeOut(500);
+                if (isShow) {
+                    $(".map_label" + selected_admin).fadeIn(500);
+                } else {
+                    $(".map_label" + selected_admin).fadeOut(500);
+                }
+                //$(".map_label:not("+selected_admin+")").fadeIn(500);
+            } else {
+                if (isShow) {
+                    $(".map_label").fadeIn(500);
+                } else {
+                    $(".map_label").fadeOut(500);
+                }
+            }
+            return false;
+        }
+
+
+
+
         function set_branch_data() {
 
             var orgId = $("#org_list").val();
-            var brancheTypeId = $("input[name='branch_types']:checked").val();           
+            var brancheTypeId = $("input[name='branch_types']:checked").val();
             var adminDist = $("#bd_info_district").val();
             var adminUpz = $("#bd_info_upazila").val();
-            
+
+            map_label_show_hide($("#map_label_opt").prop('checked'));
+
             orgId = (orgId || orgId != '') ? orgId : '0';
             adminDist = (adminDist || adminDist != '') ? adminDist : '0';
             adminUpz = (adminUpz || adminUpz != '') ? adminUpz : '0';
             //brancheTypeId = (brancheTypeId || brancheTypeId != '') ? brancheTypeId : '0';
-            if(adminDist==0 && brancheTypeId==0){ 
-                
-                if($("#org_list").val()!=""){
-                //$("#1").prop("checked", true);
-                //alert("Please Select at least one District Otherwise it takes more time to show all Branch");
-                //return;               
-               }else{
-                $("#1").prop("checked", true);
-                alert("Please Select Admin Boundary or Organization Otherwise it takes more time to show all Branches Data");
-                return;
-               }
-                
-                
+            if (adminDist == 0 && brancheTypeId == 0) {
+
+                if ($("#org_list").val() != "") {
+                    //$("#1").prop("checked", true);
+                    //alert("Please Select at least one District Otherwise it takes more time to show all Branch");
+                    //return;               
+                } else {
+                    $("#1").prop("checked", true);
+                    alert("Please Select Admin Boundary or Organization Otherwise it takes more time to show all Branches Data");
+                    return;
+                }
+
+
             }
             //alert("Org Id:"+orgId+ ", branche Id:"+brancheTypeId); 
             //alert("Org Id:"+orgId+ ", brancheTypeId:"+brancheTypeId+", AdminDist : "+adminDist+", AdminUpz : "+adminUpz);
@@ -686,7 +739,7 @@
                 async: true,
                 type: "post",
                 dataType: "html",
-                url: document.location + "ReportModuleReportViewers\/get_branches_location\/" + orgId + "\/" + brancheTypeId + "\/" + adminDist+ "\/" + adminUpz,
+                url: document.location + "ReportModuleReportViewers\/get_branches_location\/" + orgId + "\/" + brancheTypeId + "\/" + adminDist + "\/" + adminUpz,
                 //url: document.location + "ReportModuleReportViewers\/get_loan_info\/" + orgId + "\/" + brancheTypeId,
                 beforeSend: function (XMLHttpReq) {
                     $("#busy-indicator").fadeIn();
@@ -712,7 +765,7 @@
                 }
             });
         }
-        
+
         function map_selected_info() {
             $("#selected_info").empty();
 //            if ($('input:radio[name=bd_info]:checked').val() == 'upaz') {
@@ -880,8 +933,19 @@
                             this.setOptions(polyDefaultOptions);
                         });
                     })(map_poly);
+
                     labelOptions.content = curr_admin_name;
                     labelOptions.position = poly_center;
+
+
+                    var labelClass = "map_label";
+                    if (admin_props.dist_code)
+                        labelClass += " dist_" + admin_props.dist_code;
+                    if (admin_props.upaz_code)
+                        labelClass += " upaz_" + admin_props.upaz_code;
+
+                    labelOptions.boxClass = labelClass;
+
                     var polygonLabel = new InfoBox(labelOptions);
                     polygonLabel.open(map);
                 } catch (e) {
@@ -1013,8 +1077,8 @@
         };
 
         function set_branch_location(branch_data) {
-            
-            
+
+
 
             $("#legend_title").empty();
             $("#legend_info_title").empty();
@@ -1121,7 +1185,7 @@
                                 "<h4><b>Mohalla/Post Office : </b> " + branch_data_info.mohalla_or_post_office + "</h4>" +
                                 "<h4><b>Mailing Address : </b> " + branch_data_info.mailing_address + "</h4>" +
                                 "<h4><b>Contract Info : </b> " + branch_data_info.contract_info + "</h4>" +
-                                "<h4><b>Latitude :</b>" + branch_data_info.lat +"<b>, Longitude : </b>"+ branch_data_info.lon + "</h4>" +
+                                "<h4><b>Latitude :</b>" + branch_data_info.lat + "<b>, Longitude : </b>" + branch_data_info.lon + "</h4>" +
                                 "</td><td style='width:auto; vertical-align:top;'>" +
                                 (!branch_data_info.file_name ? "" : "<div style='height:250px;padding:0;'><img style='border:0 none; width:auto; max-height:240px; margin:0; padding:0;' src='" +
                                         document.location.href + "files/uploads/branches/" + branch_data_info.file_name + "' /></div>") +
@@ -1178,6 +1242,8 @@
         });
 
         $("#bd_info_district").on("change", function () {
+
+            $("#map_label_opt").attr('checked', true);  //RMO1
             // alert("OK");
             //  $("input[name='bd_info']:checked").val();
             var dstCode = $("#bd_info_district").val();
@@ -1193,6 +1259,7 @@
                 }
             }
             map_selected_info();
+            map_label_show_hide($("#map_label_opt").prop('checked'));
 
         });
         $("#bd_info_upazila").on("change", function () {
@@ -1200,10 +1267,11 @@
             set_upazila_map(upzCode);
 
             map_selected_info();
+            map_label_show_hide($("#map_label_opt").prop('checked'));
         });
 
         function set_district_map(dist_id) {
-            
+
             //alert("dist_id: "+dist_id);
 
             $("#busy-indicator").fadeIn();
