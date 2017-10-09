@@ -1,4 +1,3 @@
-<!--RMO file add-->
 <div id='map_info' class="map_info">
     <style>
         body {
@@ -45,7 +44,7 @@
         .gm-style-iw h4, .gm-style-iw h5 {
             font-size: 13px;
         }
-        
+
         /*
         #mapLabelPanel {
             display: none;
@@ -90,14 +89,14 @@
         }
         .map_label {
             z-index: 105;
-            display: inline-block;
+            display: none;
             color: #333;
             font: normal 13px/1.3 Roboto, Helvetica, Arial, sans-serif;
             vertical-align: middle;
         }
 
         .org_info {
-            z-index: 101;
+            z-index: 100;
             position: fixed;
             top: 0;
             right: 0; 
@@ -109,7 +108,7 @@
         }
         .org_opt {
             width: 300px;
-            margin: 30 3px;
+            margin: 2px 3px;
             padding: 2px;
         }
         .branch_count {
@@ -119,10 +118,10 @@
             font: bold 14px/1.2 Roboto, Arial, sans-serif;
             text-align: left;
         }
-        
+
 
         .map_btns_content {            
-            z-index: 101;
+            z-index: 100;
             position: fixed;
             top: 0;
             left: 0;
@@ -186,7 +185,7 @@
         }
 
         .map_legend, .map_opt_content {
-            z-index: 101;
+            z-index: 100;
             position: absolute;
             top: 100px;
             border: 1px solid #e5e7e8;
@@ -219,7 +218,7 @@
             margin: 0;
             padding: 0;
             line-height: 30px;
-            cursor: move;
+            cursor: default;
             background-color: #eff0f3;
 
             -webkit-user-select: none;
@@ -236,7 +235,7 @@
             font: bold 14px/1.5 Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
             text-transform: capitalize;
-            cursor: move;
+            cursor: default;
 
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -318,7 +317,7 @@
         }
 
         .legend_btn_content {
-            z-index: 101;
+            z-index: 100;
             position: absolute;
             top: 100px;
             border: 0 none;
@@ -415,6 +414,7 @@
         <div id="map_legend_infos" class="map_legend_infos"></div>        
     </div>
 
+
     <div id="legend_btn" class="legend_btn_content legend_btn_left" onclick="javascript: legend_open_close('legend', 'open', 'right');" title="Show Map Legend">
         <div class="legend_btn_left_img"></div><!--<span class="map_legend_btn" onclick="javascript: legend_open_close('legend', 'open', 'right');" title="Show Map Legend">&#9776;</span>--> 
     </div>
@@ -439,7 +439,7 @@
 
     <!--    onclick="javascript: legend_open_close('legend_info', 'close', 'left');" 
         onclick="javascript: legend_open_close('legend', 'close', 'right');"-->
-   
+
 
     <div class="map_btns_content">
         <div id="map_center" class="map_btns map_full_extent" title="Full extent the map"></div>
@@ -506,11 +506,13 @@
 
                                         <select id="saving_info" style="width:185px; height:25px; margin-left:15px;display: none">
                                             <!--<option value="">--- Select ---</option>-->
-                                            <option value="number_of_female_savers">Saving</option>
+                                            <option value="savings_balance_at_the_starting_of_this_half_year">Balance at the Starting of this Half Year</option>
+                                            <option value="savings_collection_in_this_half_year">Savings Collection in This Half Year</option>
+                                            <option value="savings_withdrawal_in_this_half_year">Savings Withdrawal in This Half Year</option>                                            
                                             <option value="number_of_male_savers">Male Saver</option>
                                             <option value="number_of_female_savers">Female Saver</option>
                                             <option value="number_of_male_savers + number_of_female_savers">Total Saver</option>
-<!--                                            loan_disbursement-->
+                                            <!--                                            loan_disbursement-->
                                         </select>    
 
 
@@ -520,15 +522,14 @@
                                             <option value="2">Area/Regional/Zonal Office</option>    
                                             <option value="3">Branch Office</option>  
                                         </select>
-                                        <?php
-                                        echo $this->Form->input('', array('id' => 'period', 'type' => 'select', 'class' => 'period_opt', 'style' => 'width:170px; height:25px; margin-left:5px;display:none', 'options' => $period_list, 'escape' => false, 'div' => false, 'label' => false))
-                                        ?>
+
+                                        <?php echo $this->Form->input('', array('id' => 'period', 'type' => 'select', 'class' => 'period_opt', 'style' => 'width:170px; height:25px; margin-left:5px;display:none', 'options' => $period_list, 'escape' => false, 'div' => false, 'label' => false)) ?>
 <!--                                        <select id="loan_category_info" style="width:150px; height:25px; margin-left:5px;display:none">
-                                            <option value="">--- Select Category ---</option>
-                                            <option value="loan_category_id">Loan Category</option>
-                                            <option value="loan_sub_category_id">Loan Sub Category</option>    
-                                            <option value="loan_sub_sub_category_id">Loan Sub Sub Category</option>  
-                                        </select>-->
+    <option value="">--- Select Category ---</option>
+    <option value="loan_category_id">Loan Category</option>
+    <option value="loan_sub_category_id">Loan Sub Category</option>    
+    <option value="loan_sub_sub_category_id">Loan Sub Sub Category</option>  
+</select>-->
 
 <!--                                    <select id="period" style="width:170px; height:25px; margin-left:5px;display:none">
     <option value="0">--- All Period ---</option>
@@ -578,7 +579,7 @@
     <script>
 
         $(function () {
-            draggable_modal('option_title', 'option_opt', 'option_opt_bg');
+            draggable_modal('option_title', 'option_opt', 'option_opt_bg', false);
         });
 
         var isOpen = false;
@@ -615,7 +616,9 @@
                 $('#' + legend_id + '_opt').prop('checked', false);
             }
         }
-        var field_name = 0;
+
+        var field_name = 0, data_type = 1;
+
         var map;
         var map_data_title;
         var bd_center = null;
@@ -634,7 +637,7 @@
             set_basic_opts();
             map_selected_info(); //RMO
 
-            $("#bd_info, #org_list, #loan_info, #period, #loan_category_info, #saving_info,#branch_type").on("change", function () {
+            $("#bd_info, #org_list, #loan_info, #period, #loan_category_info, #saving_info, #branch_type").on("change", function () {
                 set_branch_data();
                 return false;
             });
@@ -692,9 +695,9 @@
 
         function set_branch_data() {
             map_selected_info();
-            
+
             map_label_show_hide($("#map_label_opt").prop('checked'));
-            
+
             var admin_code = $("#bd_info").val();
 
             var branch_type_id = $("#branch_type").val();
@@ -705,8 +708,7 @@
 
             if ($("#branch_info").val() == 2) {
                 field_name = $("#loan_info").val();
-            } else
-            {
+            } else {
                 field_name = $("#saving_info").val();
             }
             // field_name='loan_disbursement';
@@ -896,14 +898,14 @@
                 }
                 return false;
             });
-            
+
             //$("#map_label_opt").change(map_label_show_hide((this).checked));
             $("#map_label_opt").change(function () {
                 map_label_show_hide((this).checked);
             });
-            
+
             return true;
-        }        
+        }
         function map_label_show_hide(isShow) {
             var dist_code = $("#bd_info_district").val();
             var upaz_code = $("#bd_info_upazila").val();
@@ -1002,12 +1004,12 @@
             var admin_field_name = admin_code + '_name';
 
             var minVal = Infinity, maxVal = -Infinity, currVal;
-            var total_branch_count = 0;
+            var total_value = 0;
             for (var dc = 0; dc < map_data.length; dc++) {
                 if (!map_data[dc].data_value)
                     continue;
                 currVal = parseFloat(map_data[dc].data_value);
-                total_branch_count += currVal;
+                total_value += currVal;
                 if (!currVal)
                     continue;
                 if (minVal > currVal)
@@ -1022,26 +1024,30 @@
 
             var branchInfo = $('#branch_info option:selected').text();
 
-            if (branchInfo == "Branch" || branchInfo == "Saving") {
-                map_data_title = admin_name + ' Wise Count';
-                //$("#legend_info_title").append(map_data_title + ' (' + total_branch_count + ')');
 
-                $("#legend_info_title").append(map_data_title + ' (' + total_branch_count + ')');
-
+            if (branchInfo == "Branch") {
+                data_type = 1;
             } else {
-                if (field_name == "no_of_borrowers" || field_name == 0) {
-                    map_data_title = admin_name + ' Wise Count';
-                    $("#legend_info_title").append(map_data_title + ' (' + total_branch_count + ')');
+                if (field_name == "no_of_borrowers" || field_name == "number_of_male_savers + number_of_female_savers"|| field_name == "number_of_male_savers" ||field_name == "number_of_female_savers" || field_name == 0) {  //field_name == "Saving"
+                    data_type = 1;
                 } else {
-                    map_data_title = admin_name + ' Wise Amount';
-                    $("#legend_info_title").append(map_data_title + ' (' + total_branch_count + ' BDT.)');
+                    data_type = 2;
                 }
+            }
+           
+
+            if (data_type == 1) {
+                map_data_title = admin_name + ' Wise Count';
+                $("#legend_info_title").append(map_data_title + ' (' + total_value + ')');
+            } else {
+                map_data_title = admin_name + ' Wise Amount';
+                $("#legend_info_title").append(map_data_title + ' (' + total_value.toFixed(2) + ' BDT.)');
             }
 
             // ||branch_types=="All Type" ||branch_types=="Head Office" ||branch_types=="Area/Regional/Zonal Office" ||branch_types=="Branch Office"
 
             $("#legend_title").append(map_data_title);
-            //$("#legend_info_title").append(map_data_title + ' (' + total_branch_count + ')');
+            //$("#legend_info_title").append(map_data_title + ' (' + total_value + ')');
 
             var delt = parseInt((maxVal - minVal) / clrClass.length) + 1;
             var curr_admin_code, curr_admin_name, curr_value, color_index, data_value,
@@ -1104,6 +1110,7 @@
 
                     var polyOptions = $.extend(true, {}, polyDefaultOptions);
                     if (curr_value.length) {
+                        //rmo
                         data_value = curr_value[0];
                         color_index = parseInt(data_value / delt);
 
@@ -1111,6 +1118,8 @@
                             color_index = clrClass.length - 1;
 
                         polyOptions.fillColor = clrClass[color_index];
+
+                        data_value = (data_value && data_type == 2) ? parseFloat(data_value).toFixed(2) : data_value;
                         $("#map_legend_infos").append('<p>' + curr_admin_name + ' (' + data_value + ')</p>');
                     } else {
                         data_value = "no data";
@@ -1125,7 +1134,6 @@
                     map_poly.setMap(map);
 
                     all_map_poly.push({center: poly_center, div_code: admin_props.div_code, dist_code: admin_props.dist_code, upaz_code: admin_props.upaz_code, map_poly: map_poly});
-
                     data_info = {pos: poly_center, admin_name: admin_name, data_admin_name: curr_admin_name, data_value: data_value, div_code: admin_props.div_code, dist_code: admin_props.dist_code, upaz_code: admin_props.upaz_code};
                     (function (map_poly, data_info) {
                         map_poly.addListener("click", function (evt) {
@@ -1136,25 +1144,17 @@
                             if (curr_poly && curr_poly.getMap !== null) {
                                 curr_poly.setOptions(polyDefaultOptions);
                             }
-
                             curr_poly = this;
                             this.setOptions(polySelectedOptions);
 
-                            if ($('#branch_info option:selected').text() == "Branch" || $('#branch_info option:selected').text() == "Saving" ) {
+                            if (data_type == 1) {
                                 infoWindow.setContent('<div style="width:auto; min-width:130px; min-height:45px; text-align:center;">' +
                                         '<h2 class="info-title">' + data_info.data_admin_name + ' ' + data_info.admin_name + '</h2>' +
-                                        '<h3 style="color:#058;"> Count : ' + data_info.data_value + '</h3></div>');
-
+                                        '<h3 style="color:#058;">Count: ' + data_info.data_value + '</h3></div>');
                             } else {
-                                if (field_name == "no_of_borrowers" || field_name == 0) {
-                                    infoWindow.setContent('<div style="width:auto; min-width:130px; min-height:45px; text-align:center;">' +
-                                            '<h2 class="info-title">' + data_info.data_admin_name + ' ' + data_info.admin_name + '</h2>' +
-                                            '<h3 style="color:#058;"> Count : ' + data_info.data_value + '</h3></div>');
-                                } else {
-                                    infoWindow.setContent('<div style="width:auto; min-width:130px; min-height:45px; text-align:center;">' +
-                                            '<h2 class="info-title">' + data_info.data_admin_name + ' ' + data_info.admin_name + '</h2>' +
-                                            '<h3 style="color:#058;">Amount: ' + data_info.data_value + ' (BDT.)</h3></div>');
-                                }
+                                infoWindow.setContent('<div style="width:auto; min-width:130px; min-height:45px; text-align:center;">' +
+                                        '<h2 class="info-title">' + data_info.data_admin_name + ' ' + data_info.admin_name + '</h2>' +
+                                        '<h3 style="color:#058;">Amount: ' + data_info.data_value + ' (BDT.)</h3></div>');
                             }
 
                             //infoWindow.setPosition(evt.latLng);
@@ -1189,21 +1189,20 @@
                     labelOptions.content = curr_admin_name + ('<p style="text-align:center; font-weight:bold; color:#024;">(' + data_value + ')</p>');
                     labelOptions.pixelOffset = new google.maps.Size(-offsetLeft, -10);
                     labelOptions.position = poly_center;
-                                        
+
                     labelClass = "map_label";
                     if (admin_props.dist_code)
                         labelClass += " dist_" + admin_props.dist_code;
                     if (admin_props.upaz_code)
                         labelClass += " upaz_" + admin_props.upaz_code;
 
-                    labelOptions.boxClass = labelClass; 
+                    labelOptions.boxClass = labelClass;
 
                     var polygonLabel = new InfoBox(labelOptions);
                     polygonLabel.open(map);
                 } catch (e) {
                 }
             });
-
             var min, max, sign;
             for (var ci = 0; ci < clrClass.length; ci++) {
                 if (ci === 0) {
@@ -1223,14 +1222,10 @@
                 $("#map_legend_colors").append('<label class="map_legend_label">' + '<label class="map_legend_color" style="background-color:' + clrClass[ci] + ';"></label>' + min + sign + max + '</label><br/>');
             }
 
-            // $("#branch_count").html("Total no. of Branches: " + total_branch_count);
+            // $("#branch_count").html("Total no. of Branches: " + total_value);
 
             $("#map_legend_colors").append('<label class="map_legend_label">' + '<label class="map_legend_color" style="background-color:' + noDataClass + ';"></label>' + 'No data' + '</label>');
-
-
-
             set_map_filter();
-
         }
 
         function GetGeoPaths(geo_coordinates, multi_poly = false) {
@@ -1272,17 +1267,17 @@
         }
         $("#bd_info").on("change", function () {
             $("#bd_info_upazila").hide();
-            
+
             $("#bd_info_district").empty();
             $("#bd_info_district").append('<option value="">--- select ---</option>');
             $("#bd_info_upazila").empty();
             $("#bd_info_upazila").append('<option value="">--- select ---</option>');
-            
+
             for (var t = 0; t < bd_all["dist"].features.length; t++) {
                 $("#bd_info_district").append('<option value="' + bd_all["dist"].features[t].properties.dist_code + '">' + bd_all["dist"].features[t].properties.dist_name + '</option>');
             }
-            
-            if($(this).val() == 'upaz') {
+
+            if ($(this).val() == 'upaz') {
                 $("#map_label_opt").prop('checked', false);
                 map_label_show_hide(false);
             }
@@ -1308,9 +1303,9 @@
             }
             set_map_filter();
             map_selected_info();
-            
+
             map_label_show_hide($("#map_label_opt").prop('checked'));
-            
+
             //alert("OK");
             //  $("input[name='bd_info']:checked").val();
             //set_district_map(dstCode);
@@ -1333,7 +1328,7 @@
 
             var dstCode = $("#bd_info_district").val();
             set_district_map(dstCode);
-            
+
             map_label_show_hide($("#map_label_opt").prop('checked'));
         }
 
