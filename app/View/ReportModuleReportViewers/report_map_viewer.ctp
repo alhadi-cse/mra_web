@@ -506,7 +506,9 @@
 
                                         <select id="saving_info" style="width:185px; height:25px; margin-left:15px;display: none">
                                             <!--<option value="">--- Select ---</option>-->
-                                            <option value="Saving">Saving</option>
+                                            <option value="savings_balance_at_the_starting_of_this_half_year">Balance at the Starting of this Half Year</option>
+                                            <option value="savings_collection_in_this_half_year">Savings Collection in This Half Year</option>
+                                            <option value="savings_withdrawal_in_this_half_year">Savings Withdrawal in This Half Year</option>                                            
                                             <option value="number_of_male_savers">Male Saver</option>
                                             <option value="number_of_female_savers">Female Saver</option>
                                             <option value="number_of_male_savers + number_of_female_savers">Total Saver</option>
@@ -1026,12 +1028,13 @@
             if (branchInfo == "Branch") {
                 data_type = 1;
             } else {
-                if (field_name == "no_of_borrowers" || field_name == "Saving" || field_name == 0) {
+                if (field_name == "no_of_borrowers" || field_name == "number_of_male_savers + number_of_female_savers"|| field_name == "number_of_male_savers" ||field_name == "number_of_female_savers" || field_name == 0) {  //field_name == "Saving"
                     data_type = 1;
                 } else {
                     data_type = 2;
                 }
             }
+           
 
             if (data_type == 1) {
                 map_data_title = admin_name + ' Wise Count';
@@ -1131,7 +1134,6 @@
                     map_poly.setMap(map);
 
                     all_map_poly.push({center: poly_center, div_code: admin_props.div_code, dist_code: admin_props.dist_code, upaz_code: admin_props.upaz_code, map_poly: map_poly});
-
                     data_info = {pos: poly_center, admin_name: admin_name, data_admin_name: curr_admin_name, data_value: data_value, div_code: admin_props.div_code, dist_code: admin_props.dist_code, upaz_code: admin_props.upaz_code};
                     (function (map_poly, data_info) {
                         map_poly.addListener("click", function (evt) {
@@ -1142,7 +1144,6 @@
                             if (curr_poly && curr_poly.getMap !== null) {
                                 curr_poly.setOptions(polyDefaultOptions);
                             }
-
                             curr_poly = this;
                             this.setOptions(polySelectedOptions);
 
@@ -1202,7 +1203,6 @@
                 } catch (e) {
                 }
             });
-
             var min, max, sign;
             for (var ci = 0; ci < clrClass.length; ci++) {
                 if (ci === 0) {
@@ -1225,11 +1225,7 @@
             // $("#branch_count").html("Total no. of Branches: " + total_value);
 
             $("#map_legend_colors").append('<label class="map_legend_label">' + '<label class="map_legend_color" style="background-color:' + noDataClass + ';"></label>' + 'No data' + '</label>');
-
-
-
             set_map_filter();
-
         }
 
         function GetGeoPaths(geo_coordinates, multi_poly = false) {
