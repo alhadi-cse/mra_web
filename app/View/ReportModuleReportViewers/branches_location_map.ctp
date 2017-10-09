@@ -98,7 +98,7 @@
         }
 
         .org_info {
-            z-index: 101;
+            z-index: 100;
             position: fixed;
             top: 0;
             right: 0;
@@ -117,7 +117,7 @@
         }
 
         .map_btns_content {            
-            z-index: 101;
+            z-index: 100;
             position: fixed;
             top: 0;
             left: 0;
@@ -182,7 +182,7 @@
         }
 
         .map_legend, .map_opt_content {
-            z-index: 101;
+            z-index: 100;
             position: absolute;
             top: 85px;
             border: 1px solid #e5e7e8;
@@ -215,7 +215,7 @@
             margin: 0;
             padding: 0;
             line-height: 30px;
-            cursor: move;
+            cursor: default;
             background-color: #eff0f3;
 
             -webkit-user-select: none;
@@ -232,7 +232,7 @@
             font: bold 14px/1.5 Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
             text-transform: capitalize;
-            cursor: move;
+            cursor: default;
 
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -325,7 +325,7 @@
 
 
         .legend_btn_content {
-            z-index: 101;
+            z-index: 100;
             position: absolute;
             top: 85px;
             border: 0 none;
